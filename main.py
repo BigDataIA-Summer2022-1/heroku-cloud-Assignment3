@@ -366,6 +366,6 @@ def num_ship_in_image(ImageId: str):
     res = int(res[0])
     return {"The number of ships in this image is: ": res}
 
-if __name__ == "__main__":
-    cwd = pathlib.Path(__file__).parent.resolve()
-    uvicorn.run(app, host="127.0.0.1", port=4000, log_config=f"{cwd}/logging.conf")
+# if __name__ == "__main__":
+#     cwd = pathlib.Path(__file__).parent.resolve()
+#     uvicorn.run(app, host="127.0.0.1", port=4000, log_config=f"{cwd}/logging.conf")
