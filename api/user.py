@@ -1,4 +1,4 @@
-import models, schemas
+import api.models as models, api.schemas as schemas
 import jwt
 from fastapi import HTTPException, Security
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer

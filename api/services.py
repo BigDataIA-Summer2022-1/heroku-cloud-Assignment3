@@ -1,14 +1,14 @@
 from sqlalchemy.orm import Session
 import fastapi.security as security
-import models as _model
-import schemas
+import api.models as _model
+import api.schemas as schemas
 import jwt
 from fastapi import HTTPException, Security
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from passlib.hash import sha256_crypt
-import user
+import api.user as user
 
 JWT_SECRET = 'myjwtsecret'
 
