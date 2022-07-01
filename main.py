@@ -22,6 +22,7 @@ from sqlalchemy.orm import Session
 import api.services as services, api.models as model, api.schemas as schemas
 from api.database import SessionLocal, engine
 from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.responses import RedirectResponse
 
 model.Base.metadata.create_all(bind=engine)
 
@@ -50,6 +51,10 @@ def get_db():
 # # Dependency
 # def get_db(request: Request):
 #     return request.state.db
+
+@app.get("/")
+async def hello():
+    return RedirectResponse("/redoc")
 
 @app.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
