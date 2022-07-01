@@ -19,8 +19,8 @@ import uvicorn
 from fastapi.security import  OAuth2PasswordRequestForm
 from fastapi import Depends, FastAPI, HTTPException,Request, Response
 from sqlalchemy.orm import Session
-import services, models as model, schemas
-from database import SessionLocal, engine
+import api.services as services, api.models as model, api.schemas as schemas
+from api.database import SessionLocal, engine
 from fastapi import FastAPI, Depends, HTTPException, status
 
 model.Base.metadata.create_all(bind=engine)
