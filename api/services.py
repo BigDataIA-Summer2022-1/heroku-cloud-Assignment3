@@ -3,7 +3,7 @@ import fastapi.security as security
 import api.models as _model
 import api.schemas as schemas
 import jwt
-from fastapi import HTTPException, Security
+from fastapi import HTTPException, Security，status, Depends
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
