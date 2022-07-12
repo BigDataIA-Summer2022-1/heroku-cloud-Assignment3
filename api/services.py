@@ -50,4 +50,19 @@ async def create_token(user: _model.User):
 
     return dict(access_token=token, token_type="bearer")
 
+async def get_current_user(token: str = Depends(oauth2schema)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, JWT_SECRET)
+        email: str = payload.get("sub")
+        if email is None:
+            raise credentials_exception
+        # token_data = TokenData(email=email)
+    except jwt.InvalidTokenError:
+        raise credentials_exception
+    return email
 
