@@ -72,12 +72,18 @@ async def generate_token(db: Session = Depends(get_db),form_data: OAuth2Password
     return await services.create_token(user)
 
 @app.get("/users/{user_id}", response_model=schemas.User)
-def read_user(user_id: int, db: Session = Depends(get_db)):
+def read_user(user_id: int, db: Session = Depends(get_db),current_user: model.User= Depends(services.get_current_user)):
+    db_user_1 = services.get_user_by_email(db, email=current_user.email)
     db_user = services.get_user(db, user_id=user_id)
+    if not db_user_1:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, 
+            detail='Invalid username or password',
+            headers={"WWW-Authenticate": "Bearer"},
+        )
     if db_user is None:
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
-
 
 logging.config.fileConfig('logging.conf', disable_existing_loggers=False)
 
