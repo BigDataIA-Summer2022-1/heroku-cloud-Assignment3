@@ -60,7 +60,7 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return services.create_user(db=db, user=user)
 
 @app.post('/token')
-async def generate_token(db: Session = Depends(get_db),form_data: OAuth2PasswordRequestForm = Depends()):
+async def login_for_access_token(db: Session = Depends(get_db),form_data: OAuth2PasswordRequestForm = Depends()):
     user = services.authenticate_user(db,form_data.username, form_data.password)
 
     if not user:
