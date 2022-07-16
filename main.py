@@ -22,6 +22,7 @@ from sqlalchemy.orm import Session
 import api.services as services, api.models as model, api.schemas as schemas
 from api.database import SessionLocal, engine
 from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import File, UploadFile
 import keras
 
 # model.Base.metadata.create_all(bind=engine)
@@ -100,13 +101,18 @@ async def log_requests(request: Request, call_next):
     return response
 
 @app.post("/def_or_ok/")
-def def_or_ok(frame: str):
+def def_or_ok(file: UploadFile):
     '''
     The purpose of this API is to predict and check if the uploaded image is a defective product or an ok product.
     Input: PIL Image.open Object
     Returns the probabilities of the product is a defective product or a ok product
     '''
-    loaded = keras.models.load_model("ResNet_Model")
+    width, height = 300, 300
+    image = Image.open(file).convert('L')
+    img = image.resize((width, height), Image.ANTIALIAS)
+    frame = np.asarray(img)
+    
+    
     image_array = []
     # appending array of image in temp array
     image_array.append(frame)
@@ -114,6 +120,8 @@ def def_or_ok(frame: str):
     for i in range(np.array(image_array).shape[0]):
         # finally each sub matrix will be replaced with respective images array
         image_array1[i, :, :, 0] = image_array[i]
+    image_array1 /= 255.0
+    loaded = keras.models.load_model("ResNet_Model")
     pred = loaded.predict(image_array1)
     # ok is 0, def is 1
     res = float(pred[0][0])
