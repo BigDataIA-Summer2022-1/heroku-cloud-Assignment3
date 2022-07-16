@@ -100,7 +100,7 @@ async def log_requests(request: Request, call_next):
     return response
 
 @app.post("/def_or_ok/")
-def def_or_ok(frame):
+def def_or_ok(frame: str):
     '''
     The purpose of this API is to predict and check if the uploaded image is a defective product or an ok product.
     Input: PIL Image.open Object
