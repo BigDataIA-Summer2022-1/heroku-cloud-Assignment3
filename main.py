@@ -109,7 +109,7 @@ async def def_or_ok(file: UploadFile):
     '''
     width, height = 300, 300
     content = await file.read()
-    image = Image.open(content).convert('L')
+    image = Image.open(BytesIO(content)).convert('L')
     img = image.resize((width, height), Image.ANTIALIAS)
     frame = np.asarray(img)
     
