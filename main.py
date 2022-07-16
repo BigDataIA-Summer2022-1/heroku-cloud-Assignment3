@@ -109,8 +109,7 @@ async def def_or_ok(file: bytes = File(...)):
     Returns the probabilities of the product is a defective product or a ok product
     '''
     width, height = 300, 300
-    content = await file.read()
-    image = Image.open(BytesIO(content)).convert('L')
+    image = Image.open(BytesIO(file)).convert('L')
     img = image.resize((width, height), Image.ANTIALIAS)
     frame = np.asarray(img)
     
