@@ -17,7 +17,7 @@ itsdangerous==2.1.2
 Jinja2==3.1.2
 jmespath==1.0.1
 jose==1.0.0
-keras==2.8.0
+keras==2.6.0
 MarkupSafe==2.1.1
 numpy==1.22.4
 pandas==1.4.2
@@ -37,7 +37,7 @@ six==1.16.0
 sniffio==1.2.0
 SQLAlchemy==1.4.39
 starlette==0.19.1
-tensorflow-cpu==2.8.0
+tensorflow-cpu==2.6.0
 typing_extensions==4.2.0
 urllib3==1.26.9
 uvicorn==0.18.2
