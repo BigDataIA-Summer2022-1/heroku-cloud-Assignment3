@@ -24,7 +24,7 @@ from api.database import SessionLocal, engine
 from fastapi import FastAPI, Depends, HTTPException, status
 import keras
 
-model.Base.metadata.create_all(bind=engine)
+# model.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
