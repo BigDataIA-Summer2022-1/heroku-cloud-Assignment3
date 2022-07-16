@@ -22,6 +22,7 @@ from sqlalchemy.orm import Session
 import api.services as services, api.models as model, api.schemas as schemas
 from api.database import SessionLocal, engine
 from fastapi import FastAPI, Depends, HTTPException, status
+import keras
 
 model.Base.metadata.create_all(bind=engine)
 
