@@ -107,22 +107,18 @@ def def_or_ok(img):
     Returns the probabilities of the product is a defective product or a ok product
     '''
     loaded = keras.models.load_model("ResNet_Model")
-    try:
-        image_array = []
-        frame = np.asarray(img)
-        # appending array of image in temp array
-        image_array.append(frame)
-        image_array1 = np.zeros(shape = (np.array(image_array).shape[0], 300, 300, 1))
-        for i in range(np.array(image_array).shape[0]):
-            # finally each sub matrix will be replaced with respective images array
-            image_array1[i, :, :, 0] = image_array[i]
-        pred = loaded.predict(image_array1)
-        # ok is 0, def is 1
-
-    except:
-        return {"Error Messages: ": "The input image is invalid, please change to a valid image."}
-    
-    return {"Probability of Defective: ": str(pred[0][0]), "Probability of ok: ": str(1 - pred[0][0])}
+    image_array = []
+    frame = np.asarray(img)
+    # appending array of image in temp array
+    image_array.append(frame)
+    image_array1 = np.zeros(shape = (np.array(image_array).shape[0], 300, 300, 1))
+    for i in range(np.array(image_array).shape[0]):
+        # finally each sub matrix will be replaced with respective images array
+        image_array1[i, :, :, 0] = image_array[i]
+    pred = loaded.predict(image_array1)
+    # ok is 0, def is 1
+    res = pred[0][0]
+    return {"Probability of Defective: ": str(res)}
 
 
 # if __name__ == "__main__":
