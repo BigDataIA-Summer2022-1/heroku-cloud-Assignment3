@@ -122,7 +122,7 @@ def def_or_ok(img):
     except:
         return {"Error Messages: ": "The input image is invalid, please change to a valid image."}
     
-    return {"Probability of Defective: ": pred, "Probability of ok: ": 1 - pred}
+    return {"Probability of Defective: ": str(pred), "Probability of ok: ": str(1 - pred)}
 
 
 # if __name__ == "__main__":
