@@ -1,16 +1,8 @@
 #build new cloud to test
 import numpy as np
-import pandas as pd
-import pathlib
 import string
 import time
 from fastapi import FastAPI, Request
-from PIL import Image
-import boto3 
-from PIL import Image
-from io import StringIO
-import botocore
-import random
 import logging
 import logging.config
 import logging.handlers
