@@ -101,17 +101,17 @@ async def log_requests(request: Request, call_next):
     return response
 
 @app.post("/def_or_ok/")
-def def_or_ok(file: UploadFile):
+async def def_or_ok(file: UploadFile):
     '''
     The purpose of this API is to predict and check if the uploaded image is a defective product or an ok product.
     Input: PIL Image.open Object
     Returns the probabilities of the product is a defective product or a ok product
     '''
     width, height = 300, 300
-    image = Image.open(file).convert('L')
+    content = await file.read()
+    image = Image.open(content).convert('L')
     img = image.resize((width, height), Image.ANTIALIAS)
     frame = np.asarray(img)
-    
     
     image_array = []
     # appending array of image in temp array
