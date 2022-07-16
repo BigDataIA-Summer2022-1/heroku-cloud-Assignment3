@@ -4,11 +4,12 @@ import pandas as pd
 import pathlib
 import string
 import time
-from fastapi import FastAPI, Request
+from fastapi import Request
 from PIL import Image
 import boto3 
-from PIL import Image
 from io import StringIO
+from fastapi import Form
+from io import BytesIO
 import botocore
 import random
 import logging
@@ -17,7 +18,7 @@ import logging.handlers
 from fastapi import FastAPI
 import uvicorn
 from fastapi.security import  OAuth2PasswordRequestForm
-from fastapi import Depends, FastAPI, HTTPException,Request, Response
+from fastapi import Depends, HTTPException,Request, Response
 from sqlalchemy.orm import Session
 import api.services as services, api.models as model, api.schemas as schemas
 from api.database import SessionLocal, engine
