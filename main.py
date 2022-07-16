@@ -106,7 +106,7 @@ async def def_or_ok(file: bytes = File(...)):
     '''
     The purpose of this API is to predict and check if the uploaded image is a defective product or an ok product.
     Input: bytes = File(...) Object
-    Returns the probabilities of the product is a defective product or a ok product
+    Returns the probabilities of the product is a defective product or an ok product
     '''
     width, height = 300, 300
     image = Image.open(BytesIO(file)).convert('L')
