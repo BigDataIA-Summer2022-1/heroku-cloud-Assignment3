@@ -99,8 +99,8 @@ async def log_requests(request: Request, call_next):
     
     return response
 
-@app.post("/def_or_ok/{img}")
-def def_or_ok(img):
+@app.post("/def_or_ok/")
+def def_or_ok(frame):
     '''
     The purpose of this API is to predict and check if the uploaded image is a defective product or an ok product.
     Input: PIL Image.open Object
@@ -108,7 +108,6 @@ def def_or_ok(img):
     '''
     loaded = keras.models.load_model("ResNet_Model")
     image_array = []
-    frame = np.asarray(img)
     # appending array of image in temp array
     image_array.append(frame)
     image_array1 = np.zeros(shape = (np.array(image_array).shape[0], 300, 300, 1))
