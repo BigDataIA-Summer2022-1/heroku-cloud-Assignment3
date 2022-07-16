@@ -105,7 +105,7 @@ async def log_requests(request: Request, call_next):
 async def def_or_ok(file: bytes = File(...)):
     '''
     The purpose of this API is to predict and check if the uploaded image is a defective product or an ok product.
-    Input: PIL Image.open Object
+    Input: bytes = File(...) Object
     Returns the probabilities of the product is a defective product or a ok product
     '''
     width, height = 300, 300
@@ -125,7 +125,7 @@ async def def_or_ok(file: bytes = File(...)):
     pred = loaded.predict(image_array1)
     # ok is 0, def is 1
     res = float(pred[0][0])
-    
+    file = File()
     return {"Probability of Defective: ": res}
 
 # if __name__ == "__main__":
