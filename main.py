@@ -98,7 +98,30 @@ async def log_requests(request: Request, call_next):
     
     return response
 
+@app.get("/def_or_ok/{img}")
+def def_or_ok(img):
+    '''
+    The purpose of this API is to predict and check if the uploaded image is a defective product or an ok product.
+    Input: PIL Image.open Object
+    Returns the probabilities of the product is a defective product or a ok product
+    '''
+    loaded = keras.models.load_model("ResNet_Model")
+    try:
+        image_array = []
+        frame = np.asarray(img)
+        # appending array of image in temp array
+        image_array.append(frame)
+        image_array1 = np.zeros(shape = (np.array(image_array).shape[0], 300, 300, 1))
+        for i in range(np.array(image_array).shape[0]):
+            # finally each sub matrix will be replaced with respective images array
+            image_array1[i, :, :, 0] = image_array[i]
+        pred = loaded.predict(image_array1)
+        # ok is 0, def is 1
 
+    except:
+        return {"Error Messages: ": "The input image is invalid, please change to a valid image."}
+    
+    return {"Probability of Defective: ": pred, "Probability of ok: ": 1 - pred}
 
 
 # if __name__ == "__main__":
