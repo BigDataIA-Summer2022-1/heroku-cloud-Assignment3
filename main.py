@@ -99,7 +99,7 @@ async def log_requests(request: Request, call_next):
     
     return response
 
-@app.get("/def_or_ok/{img}")
+@app.post("/def_or_ok/{img}")
 def def_or_ok(img):
     '''
     The purpose of this API is to predict and check if the uploaded image is a defective product or an ok product.
