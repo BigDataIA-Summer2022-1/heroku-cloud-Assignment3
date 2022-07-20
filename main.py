@@ -26,7 +26,7 @@ from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi import File, UploadFile
 import keras
 
-# model.Base.metadata.create_all(bind=engine)
+model.Base.metadata.create_all(bind=engine, tables=None, checkfirst=True)
 
 app = FastAPI()
 
